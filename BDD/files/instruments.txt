@@ -1,0 +1,19 @@
+# Le Prix est le prix d'achat d'un instrument
+# Le Prix_Cours est le prix de location d'un instrument, pour mois
+# Location indique si un instrument est disponible à la location ou non
+#   ex1 : le basson n'est pas disponible à la location
+#   ex2 : le piano est disponible à la location
+Nom			Prix	Prix_Cours	Location
+Basson		 400	20			N
+Chant		  10	
+Clarinette	 350	20			N
+Clavecin	5000	30			O
+Contrebasse	2000	20			O
+Cor			 450	20			N
+Flûte		 200	15			N
+Harpe		3000	25			O
+Hautbois	 300	20			N
+Piano		3000	20			O
+Timbale		1000	15			O
+Violon		1200	20			N
+Violoncelle	1500	20			N
