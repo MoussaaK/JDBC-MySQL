@@ -12,9 +12,9 @@ import java.util.List;
 public class Main {
 
 	public static void main(String[] args) throws SQLException, IOException {
-		String uri = "jdbc:mysql://localhost:3306/sys";
+		String uri = "jdbc:mysql://localhost:3306/jdbc";
 		String username = "root";
-		String pwd = "Massare@";
+		String pwd = "Massare0";
 		// TODO Auto-generated method stub
 		Connection connection = DriverManager.getConnection(uri, username, pwd);
 		//Statement statement = connection.createStatement();
