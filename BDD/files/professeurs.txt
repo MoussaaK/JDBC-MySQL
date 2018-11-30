@@ -3,7 +3,7 @@ Aude		22
 Ferdinand	42
 Jean		46
 Maurice		38
-René		40
-Stéphanie	32
-Valérie		27
-Véronique	29
+Rene		40
+Stephanie	32
+Valerie		27
+Veronique	29
