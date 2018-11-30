@@ -15,36 +15,79 @@ public class Main {
 		String uri = "jdbc:mysql://localhost:3306/school";
 		String username = "root";
 		String pwd = "Massare@";
-		// TODO Auto-generated method stub
+	
 		Connection connection = DriverManager.getConnection(uri, username, pwd);
-		//Statement statement = connection.createStatement();
+		
 		List<Eleve> eleves = Readers.readEleve("./files/eleves.txt");
 		List<Instruments> instruments = Readers.readInstruments("./files/instruments.txt");
 		List<Professeur> profs = Readers.readProfesseurs("./files/professeurs.txt");
-		//profs.forEach(s->System.out.println(s));
-		//instruments.forEach(s->System.out.println(s));
-		String query;
-		String EleveCreationQuery = "CREATE TABLE IF NOT EXISTS eleves(id SMALLINT  NOT NULL AUTO_INCREMENT PRIMARY KEY, nom  VARCHAR(30), age int);";
+	
 		String createDB = "CREATE DATABASE IF NOT EXISTS school;";
+		String query;
+		String elevesCreationQuery = "USE SCHOOL;" + 
+				"DROP TABLE eleves;" + 
+				"CREATE TABLE eleves (id int(11) NOT NULL AUTO_INCREMENT, nom varchar(30) NOT NULL, age int(11) NOT NULL, PRIMARY KEY (id), UNIQUE KEY nom (nom));";
+		
+		String instrumentsCreationQuery = "DROP TABLE instruments;" + 
+				"CREATE TABLE instruments (id int(11) NOT NULL AUTO_INCREMENT, nom varchar(30) NOT NULL, prix int(11) NOT NULL, prix_cours int(11) NOT NULL, location char(1) NOT NULL, PRIMARY KEY (id), UNIQUE KEY nom (nom));";
+		
+		String professeursCreationQuery = "DROP TABLE professeurs;\r\n" + 
+				"CREATE TABLE professeurs (id int(11) NOT NULL AUTO_INCREMENT, nom varchar(30) NOT NULL, age int(11) NOT NULL, instrument int(11) NOT NULL, PRIMARY KEY (id), UNIQUE KEY nom (nom));";
+		
+		
 		PreparedStatement preparedStatement  =  connection.prepareStatement(createDB);
 		preparedStatement.execute();
-		preparedStatement.executeUpdate("DROP TABLE IF EXISTS eleves");
-		preparedStatement.executeUpdate(EleveCreationQuery);
+		
+		/*preparedStatement  =  connection.prepareStatement(elevesCreationQuery);
+		preparedStatement.executeQuery();
+		
+		preparedStatement  =  connection.prepareStatement(professeursCreationQuery);
+		preparedStatement.executeQuery();
+		
+		preparedStatement  =  connection.prepareStatement(instrumentsCreationQuery);
+		preparedStatement.executeQuery();*/
+		
 		
 		ResultSet resultSet = null;
 		
 		for (Eleve eleve : eleves) {
-			query = "INSERT INTO eleves (nom, age) VALUES ('" + eleve.getNom() + "', '" + eleve.getAge() + "')";
-			preparedStatement.executeUpdate(query);
+			
+			query = "INSERT INTO eleves (nom, age) VALUES (?, ?)";
+			preparedStatement  =  connection.prepareStatement(query);
+			preparedStatement.setString(1, eleve.getNom());
+			preparedStatement.setInt(2, eleve.getAge());
+			
+			preparedStatement.execute();
 		}
-		//resultSet = preparedStatement.executeQuery("SELECT * from eleves");
-		/*preparedStatement = connection.prepareStatement("SELECT * from eleves");
+		
+		for (Professeur prof : profs) {
+
+			query = "INSERT INTO professeurs (nom, age, instrument) VALUES (?, ?, ?)";
+			preparedStatement  =  connection.prepareStatement(query);
+			preparedStatement.setString(1, prof.getNom());
+			preparedStatement.setInt(2, prof.getAge());
+			preparedStatement.setInt(3, prof.getInstrument());
+			preparedStatement.execute();
+		}
+		
+		for ( Instruments instrument : instruments) {
+				query = "INSERT INTO instruments (nom, prix, prix_cours, location) VALUES (?, ?, ?, ?)";
+				preparedStatement  =  connection.prepareStatement(query);
+				preparedStatement.setString(1, instrument.getNom());
+				preparedStatement.setInt(2, instrument.getPrix());
+				preparedStatement.setInt(3, instrument.getPrixCours());
+				preparedStatement.setString(4, instrument.getLocation());
+			
+			
+			preparedStatement.execute();
+		}
+		
+		resultSet = preparedStatement.executeQuery("SELECT * from eleves");
+		preparedStatement = connection.prepareStatement("SELECT * from eleves");
 		ResultSetMetaData rsmd = preparedStatement.getMetaData();
 		for (int i = 1; i < rsmd.getColumnCount()+1; i++) {
-			System.out.println(rsmd.getColumnLabel(i));
-		}*/
-		
-		
+			System.out.println(rsmd);
+		}
 		
 	}
 

@@ -84,9 +84,9 @@ public class Readers {
 	
 			for (List<String> item  : items) {
 				if(item.size()==4)
-					instruments.add(new Instruments(item.get(0), Double.parseDouble(item.get(1)), Double.parseDouble(item.get(2)), item.get(3)));
+					instruments.add(new Instruments(item.get(0), Integer.parseInt(item.get(1)), Integer.parseInt(item.get(2)), item.get(3)));
 				else
-					instruments.add(new Instruments(item.get(0), Double.parseDouble(item.get(1))));
+					instruments.add(new Instruments(item.get(0), Integer.parseInt(item.get(1))));
 			}
 		} catch (IOException e) {
 			e.printStackTrace();

@@ -2,7 +2,7 @@ package org.konate.bdd.serie1.exo1;
 
 public class Professeur {
 	private String nom;
-	private int age;
+	private int age, instrument;
 	public Professeur(String nom, int age) {
 		super();
 		this.nom = nom;
@@ -13,6 +13,12 @@ public class Professeur {
 	}
 	public void setNom(String nom) {
 		this.nom = nom;
+	}
+	public int getInstrument() {
+		return instrument;
+	}
+	public void setInstrument(int instrument) {
+		this.instrument = instrument;
 	}
 	public int getAge() {
 		return age;

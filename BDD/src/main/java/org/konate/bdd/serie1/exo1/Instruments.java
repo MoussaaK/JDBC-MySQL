@@ -2,19 +2,21 @@ package org.konate.bdd.serie1.exo1;
 
 public class Instruments {
 	private String nom;
-	private double prix, prixCours;
+	private int prix, prixCours;
 	private String location;
-	public Instruments(String nom, double prix, double prixCours, String location) {
+	public Instruments(String nom, int prix, int prixCours, String location) {
 		super();
 		this.nom = nom;
 		this.prix = prix;
 		this.prixCours = prixCours;
 		this.location = location;
 	}
-	public Instruments(String nom, double prix) {
+	public Instruments(String nom, int prix) {
 		super();
 		this.nom = nom;
 		this.prix = prix;
+		this.prixCours = 0;
+		this.location = "";
 	}
 	public String getNom() {
 		return nom;
@@ -22,16 +24,16 @@ public class Instruments {
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
-	public double getPrix() {
+	public int getPrix() {
 		return prix;
 	}
-	public void setPrix(double prix) {
+	public void setPrix(int prix) {
 		this.prix = prix;
 	}
-	public double getPrixCours() {
+	public int getPrixCours() {
 		return prixCours;
 	}
-	public void setPrixCours(double prixCours) {
+	public void setPrixCours(int prixCours) {
 		this.prixCours = prixCours;
 	}
 	public String getLocation() {
