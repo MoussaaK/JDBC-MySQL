@@ -4,8 +4,13 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.regex.Pattern;
@@ -68,6 +73,7 @@ public class Readers {
 	
 	static Predicate<String> isNotComment = string -> !string.startsWith("#");
 
+	
 	public static List<Instruments> readInstruments(String fileName) throws IOException {
 		File file = new File(fileName);
 		List<List<String>> items = new ArrayList<>();
@@ -93,5 +99,30 @@ public class Readers {
 		}
 
 		return instruments;
+	}
+	
+	
+	public static void readAndExecuteSQLQueries(Connection conn, InputStream in) throws SQLException {
+		
+	    try (Scanner s = new Scanner(in);){
+	    	s.useDelimiter("(;(\r)?\n)|(--\n)");
+		    Statement statement = conn.createStatement();
+	        while (s.hasNext())
+	        {
+	            String line = s.next();
+	            
+	            //Is comment
+	            if (line.startsWith("/*!") && line.endsWith("*/")) {
+	                int i = line.indexOf(' ');
+	                line = line.substring(i + 1, line.length() - " */".length());
+	            }
+	            //Is SQL statement
+	            if (line.trim().length() > 0) {
+	            	statement.execute(line);
+	            }
+	        }
+		} catch (Exception e) {
+			e.getMessage();
+		}
 	}
 }
