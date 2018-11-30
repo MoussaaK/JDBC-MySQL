@@ -12,7 +12,7 @@ import java.util.List;
 public class Main {
 
 	public static void main(String[] args) throws SQLException, IOException {
-		String uri = "jdbc:mysql://localhost:3306/sys";
+		String uri = "jdbc:mysql://localhost:3306/school";
 		String username = "root";
 		String pwd = "Massare@";
 		// TODO Auto-generated method stub
