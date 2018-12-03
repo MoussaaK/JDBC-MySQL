@@ -10,8 +10,8 @@ public class Main {
 
 	public static void main(String[] args) throws SQLException {
 		String uri = "jdbc:mysql://localhost:3306/school";
-		String username = "root";
-		String pwd = "Massare@";
+		String username = "jdbc-user";
+		String pwd = "jdbc-password@";
 		
 		Connection connection = DriverManager.getConnection(uri, username, pwd);
 		Statement statement = connection.createStatement();
