@@ -10,6 +10,14 @@ CREATE TABLE `eleves` (
   UNIQUE KEY `nom` (`nom`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+DROP TABLE eleves_instruments;
+CREATE TABLE eleves_instruments (
+`id` INT NOT NULL AUTO_INCREMENT,
+`nom` VARCHAR(20) NOT NULL,
+`instrument` VARCHAR(20) NOT NULL,
+PRIMARY KEY(`id`, `instrument`, `nom`)
+);
+
 DROP TABLE `instruments`;
 CREATE TABLE `instruments` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
