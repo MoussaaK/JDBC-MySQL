@@ -1,0 +1,25 @@
+Eleves		Instrument
+Albert		Clavecin	Piano	
+André		Clarinette	Hautbois	Flûte
+Antoine		Piano		
+Aude		Hautbois	Flûte	
+Christophe	Flûte		
+Eva			Cor		
+Florence	Chant		Harpe	
+Inès		Chant		
+Isabelle	Contrebasse		
+Jacques		Piano		
+Jean-Claude	Basson		
+Jérémie		Hautbois		
+Laurence	Harpe		
+Luc			Violon		
+Lucie		Piano		
+Marc		Violoncelle		
+Marie		Violoncelle		
+Noémie		Chant		
+Paul		Timbale		
+Pierre		Chant		Piano	
+Suzanne		Violon		
+Thomas		Chant		Violon	
+Valérie		Violon		
+Véronique	Piano		

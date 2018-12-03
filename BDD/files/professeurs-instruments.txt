@@ -1,0 +1,9 @@
+Nom			Instrument
+Aude		Flûte
+Ferdinand	Harpe
+Jean		Violoncelle
+Maurice		Contrebasse
+René		Clarinette
+Stéphanie	Chant
+Valérie		Violon
+Véronique	Piano
