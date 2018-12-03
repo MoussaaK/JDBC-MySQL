@@ -14,3 +14,8 @@ ON ei.id = e.id
 INNER JOIN school.instruments i
 ON i.nom = ei.instrument;
 		 
+SELECT AVG(age) From school.eleves;
+
+SELECT e.nom, ei.instrument FROM school.eleves e INNER JOIN school.eleves_instruments ei ON ei.id = e.id INNER JOIN school.instruments i ON i.nom = ei.instrument GROUP BY e.id;
+
+SELECT AVG(prix) as avg_price From school.instruments where school.instruments GROUP BY id;
