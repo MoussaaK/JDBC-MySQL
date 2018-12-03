@@ -65,6 +65,30 @@ public class Readers {
 
 		return professeurs;
 	}
+	
+	static Function<String, ProfesseursInstruments> lineToProfesseursInstruments = string -> {
+		return new ProfesseursInstruments(string.split(";")[0], string.split(";")[1]);
+	};
+	
+	public static List<ProfesseursInstruments> readProfesseursInstruments(String fileName) throws IOException {
+		File file = new File(fileName);
+		List<ProfesseursInstruments> profInstruments= new ArrayList<>();
+
+		try (FileReader fr = new FileReader(file);
+				BufferedReader br = new BufferedReader(fr);) {
+
+			profInstruments = br.lines()
+					.skip(1)
+					.filter(s -> isNotEmpty.test(s))
+					.map(s->s.replaceFirst("	", ";").replace("	", ""))
+					.map(lineToProfesseursInstruments)
+					.collect(Collectors.toList());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		return profInstruments;
+	}
 
 	private static Pattern splitter = Pattern.compile("[\\s]+");
 	private static Function<String, List<String>> lineToInstruments =
@@ -73,7 +97,6 @@ public class Readers {
 	
 	static Predicate<String> isNotComment = string -> !string.startsWith("#");
 
-	
 	public static List<Instruments> readInstruments(String fileName) throws IOException {
 		File file = new File(fileName);
 		List<List<String>> items = new ArrayList<>();
@@ -101,6 +124,34 @@ public class Readers {
 		return instruments;
 	}
 	
+	private static Function<String, List<String>> lineToElevesInstruments =
+			line -> splitter.splitAsStream(line)
+			.collect(Collectors.toList());
+	
+	public static List<ElevesInstruments> readElevesInstruments(String fileName) throws IOException {
+		File file = new File(fileName);
+		List<List<String>> items = new ArrayList<>();
+		List<ElevesInstruments> elevesInstruments = new ArrayList<>();
+
+		try (FileReader fr = new FileReader(file);
+				BufferedReader br = new BufferedReader(fr);) {
+
+			items = br.lines()
+					.filter(s -> isNotEmpty.and(isNotComment).test(s))
+					.skip(1)
+					.map(lineToElevesInstruments)
+					.collect(Collectors.toList());
+	
+			for (List<String> item  : items) {
+				for (int i = 1; i < item.size(); i++) {
+					elevesInstruments.add(new ElevesInstruments(item.get(0), item.get(i)));
+				}
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return elevesInstruments;
+	}
 	
 	public static void readAndExecuteSQLQueries(Connection conn, InputStream in) throws SQLException {
 		
@@ -110,13 +161,6 @@ public class Readers {
 	        while (s.hasNext())
 	        {
 	            String line = s.next();
-	            
-	            //Is comment
-	            if (line.startsWith("/*!") && line.endsWith("*/")) {
-	                int i = line.indexOf(' ');
-	                line = line.substring(i + 1, line.length() - " */".length());
-	            }
-	            //Is SQL statement
 	            if (line.trim().length() > 0) {
 	            	statement.execute(line);
 	            }
