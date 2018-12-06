@@ -1,4 +1,4 @@
-package org.konate.bdd.serie1.exo2;
+package org.konate.bdd.serie1.exo2.util;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
