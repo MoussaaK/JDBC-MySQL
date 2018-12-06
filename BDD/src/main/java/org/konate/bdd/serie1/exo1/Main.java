@@ -8,13 +8,20 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.List;
 
+import org.konate.bdd.serie1.exo1.model.Eleve;
+import org.konate.bdd.serie1.exo1.model.ElevesInstruments;
+import org.konate.bdd.serie1.exo1.model.Instruments;
+import org.konate.bdd.serie1.exo1.model.Professeur;
+import org.konate.bdd.serie1.exo1.model.ProfesseursInstruments;
+import org.konate.bdd.serie1.exo1.util.Readers;
+
 public class Main {
 
 	public static void main(String[] args) throws SQLException, IOException {
 
 		String uri = "jdbc:mysql://localhost:3306/school";
-		String username = "jdbc-user";
-		String pwd = "jdbc-password";
+		String username = "root";
+		String pwd = "Massare@";
 
 		Connection connection = DriverManager.getConnection(uri, username, pwd);
 

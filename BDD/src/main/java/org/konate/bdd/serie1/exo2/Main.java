@@ -10,8 +10,8 @@ public class Main {
 
 	public static void main(String[] args) throws SQLException {
 		String uri = "jdbc:mysql://localhost:3306/school";
-		String username = "jdbc-user";
-		String pwd = "jdbc-password@";
+		String username = "root";
+		String pwd = "Massare@";
 		
 		Connection connection = DriverManager.getConnection(uri, username, pwd);
 		Statement statement = connection.createStatement();
@@ -28,7 +28,7 @@ public class Main {
 		resultSet = Queries.execute(statement, sql);
 		Queries.printQueryAnswer(resultSet, "average_age_professeurs");
 		
-		sql = "SELECT e.nom, avg(prix) as depenses FROM school.eleves e INNER JOIN school.eleves_instruments ei ON ei.id = e.id INNER JOIN school.instruments i ON i.nom = ei.instrument GROUP BY e.id;";
+		sql = "SELECT e.nom, sum(prix + prix_cours*30) as depenses FROM school.eleves e INNER JOIN school.eleves_instruments ei ON ei.id = e.id INNER JOIN school.instruments i ON i.nom = ei.instrument GROUP BY e.id;";
 		resultSet = Queries.execute(statement, sql);
 		Queries.printQueryAnswer(resultSet, "nom");
 		resultSet = Queries.execute(statement, sql);

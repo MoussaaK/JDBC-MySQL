@@ -1,4 +1,4 @@
-package org.konate.bdd.serie1.exo1;
+package org.konate.bdd.serie1.exo1.util;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -15,6 +15,12 @@ import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
+
+import org.konate.bdd.serie1.exo1.model.Eleve;
+import org.konate.bdd.serie1.exo1.model.ElevesInstruments;
+import org.konate.bdd.serie1.exo1.model.Instruments;
+import org.konate.bdd.serie1.exo1.model.Professeur;
+import org.konate.bdd.serie1.exo1.model.ProfesseursInstruments;
 
 public class Readers {
 	private static Function<String, Eleve> lineToEleve = string -> {
